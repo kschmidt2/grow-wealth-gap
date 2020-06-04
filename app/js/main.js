@@ -8,17 +8,18 @@
 
 Highcharts.setOptions({
     lang: {
-      thousandsSep: ','
+      thousandsSep: ',',
+      numericSymbols: [null, 'M', 'G', 'T', 'P', 'E']
     }
 });
 
-let chartId = document.getElementById("chart-container");
+let chartIdWealthGap6 = document.getElementById("chart-container-wealth-gap-6")
 
 // checks for the chart ID and displays a backup image if the browser can't find it
 setTimeout(function() {
-    if(chartId.innerHTML === "") {
+    if(chartIdWealthGap6.innerHTML === "") {
         // console.log('noId');
-        let chartArea = document.getElementsByClassName("chart-area");
+        let chartArea = document.getElementsByClassName("chart-area-wealth-gap-6");
         for(var i = 0; i < chartArea.length; i++) {
             chartArea[i].style.display = "none";
         } 
@@ -30,25 +31,30 @@ setTimeout(function() {
 },500);
 
 function drawHighcharts() {
-    Highcharts.chart(chartId, {
+    Highcharts.chart(chartIdWealthGap6, {
         chart: {
             type: 'bar',
             styledMode: true,
             spacingBottom: 25,
             spacingRight: 100,
-            spacingLeft: 0,
+            spacingLeft: 2,
             spacingTop: 20
         }, 
         title: {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1TBI9FgQy-F1EQkL0ntgDz7UvHQCVubvVOZB8d1fDqqs',
+            googleSpreadsheetWorksheet: 6
         },
         // for bar charts only
         plotOptions: {
             series: {
-                groupPadding: 0.1
+                groupPadding: 0.1,
+                dataLabels: {
+                    enabled: true,
+                    format: "{y:,.0f}%"
+                }
             } 
         },
         // for line charts only
@@ -69,11 +75,12 @@ function drawHighcharts() {
         //     }
         // },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            // align: 'right',
+            // symbolRadius: 0,
+            // verticalAlign: 'top',
+            // x: 0,
+            // itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
@@ -89,11 +96,12 @@ function drawHighcharts() {
             // tickInterval: 24 * 3600 * 1000 * 7
         },
         yAxis: {
-            title: false,
-            labels: {
-                useHTML: true,
-                overflow: 'allow'
-            },
+            visible: false,
+            // title: false,
+            // labels: {
+            //     useHTML: true,
+            //     overflow: 'allow'
+            // },
             // adds commas to thousands
             // formatter: function () {
             //     return Highcharts.numberFormat(this.value,0,'.',',');
@@ -103,8 +111,7 @@ function drawHighcharts() {
             enabled: false
         },
         tooltip: {
-            shadow: false,
-            padding: 10
+            enabled: false
         },
         responsive: {
             rules: [{
@@ -115,9 +122,12 @@ function drawHighcharts() {
                 chart: {
                 spacingRight: 10
                 },
+                yAxis: {
+                    tickAmount: 4
+                },
                 legend: {
                     align: 'left',
-                    x: -18
+                    x: -8
                 },
                 tooltip: {
                     enabled: false

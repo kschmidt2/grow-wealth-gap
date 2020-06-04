@@ -84,10 +84,11 @@
   .highcharts-yaxis-labels {
     fill: $slate-secondary-5;
     // use this to change the axis label
-    & span:first-child {
+    & span:last-child {
       &:after {
         content: "%";
     }
+    transform: translate(10px,0) !important;
     }
   }
   
@@ -207,16 +208,26 @@
   .highcharts-color-0 {
     fill: $green-primary;
     stroke: $green-primary;
+    & rect {
+      &:nth-child(2) {
+        fill: $purple-primary;
+        stroke: $purple-primary;
+      }
+      &:nth-child(3) {
+        fill: $slate-secondary-3;
+        stroke: $slate-secondary-3;
+      }
+    }
   }
   
   .highcharts-color-1 {
-    fill: $slate-secondary-3;
-    stroke: $slate-secondary-3;
+    fill: $purple-primary;
+    stroke: $purple-primary;
   }
   
   .highcharts-color-2 {
-    fill: $purple-primary;
-    stroke: $purple-primary;
+    fill: $slate-secondary-3;
+    stroke: $slate-secondary-3;
   }
   
   .highcharts-color-3 {
@@ -388,7 +399,7 @@
   
   /* Legend */
   .highcharts-legend-box {
-    fill: none;
+    fill: white;
     stroke-width: 0;
   }
   

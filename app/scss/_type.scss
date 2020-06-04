@@ -11,8 +11,13 @@ $font-stack: 'Avenir', 'Avenir Next', 'Arial', sans-serif;
     fill: $slate-secondary-6;
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     max-width: 600px;
+    font-weight: 600;
+    @include sm-md-xl {
+        // set this only if there is a chart title + legend
+        // margin-bottom: -33px;
+    }
 }
 
 .chart-title, .chart-title-social {
